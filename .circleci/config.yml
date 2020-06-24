@@ -4,10 +4,10 @@ jobs:
    docker:
       - image: ubuntu:18.04
    environment:
-      GIT_EMAIL: 'romadhonadipermana279f@gmail.com'
-      GIT_NAME: 'adislice'
+      GIT_EMAIL: 'rizal82rebe@gmail.com'
+      GIT_NAME: 'rzlamrr'
       VENDOR: 'xiaomi'
-      DEVICE: 'ugglite'
+      DEVICE: 'pine'
    steps:
       - run:
           name: Preparing environment
@@ -33,9 +33,9 @@ jobs:
           command: |
            if [ -d "device/xiaomi/pine" ]; then
                rm device/xiaomi/pine -rf
-               git clone https://github.com/adislice/twrp_device_xiaomi_pine -b batik device/xiaomi/pine
+               git clone https://github.com/rzlamrr/twrp_device_xiaomi_pine -b batik device/xiaomi/pine
            else
-               git clone https://github.com/adislice/twrp_device_xiaomi_pine -b batik device/xiaomi/pine
+               git clone https://github.com/rzlamrr/twrp_device_xiaomi_pine -b batik device/xiaomi/pine
            fi
       - run:
           name: Compile
@@ -49,7 +49,7 @@ jobs:
            telegram/telegram -t $TOKEN -c $CHAT_ID -H "⚙️ Build Started for $DEVICE"
            mka recoveryimage -j$(nproc --all)
            ls -lh $(pwd)/out/target/product/${DEVICE}/
-           export BUILDFILE_ZIP=$(find $(pwd)/out/target/product/${DEVICE}/*ugglite*.zip 2>/dev/null)
+           export BUILDFILE_ZIP=$(find $(pwd)/out/target/product/${DEVICE}/*pine*.zip 2>/dev/null)
            export UPLOAD_PATH=$(pwd)/out/target/product/${DEVICE}/upload/
            echo $BUILDFILE_ZIP
            echo $UPLOAD_PATH
