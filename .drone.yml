@@ -22,6 +22,8 @@ steps:
       from_secret : COWNER_ID
     STATUS:
       from_secret : STATUS
+    DT_REPO:
+      from_secret : DT_REPO
   commands:
   - wget -q https://github.com/rzlamrr/scripts/raw/master/private/envlunch.sh
   - bash envlunch.sh
