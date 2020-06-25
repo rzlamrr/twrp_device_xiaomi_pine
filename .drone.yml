@@ -2,8 +2,6 @@ kind: pipeline
 name: Batik Recovery
 
 environment:
-  VENDOR: xiaomi
-  DEVICE: pine
   GIT_NAME:
     from_secret : GIT_NAME
   BR_BRANCH:
@@ -20,11 +18,17 @@ environment:
 steps:
 - name: envlunch
   image: fr3akyphantom/droid-builder:latest
+  environment:
+    VENDOR: xiaomi
+    DEVICE: pine
   commands:
   - wget -q https://github.com/rzlamrr/scripts/raw/master/private/envlunch.sh
   - bash envlunch.sh
 - name: sync
   image: fr3akyphantom/droid-builder:latest
+  environment:
+    VENDOR: xiaomi
+    DEVICE: pine
   commands:
   - wget -q https://github.com/rzlamrr/scripts/raw/master/private/make.sh
   - bash make.sh
