@@ -5,17 +5,17 @@ environment:
   VENDOR: xiaomi
   DEVICE: pine
   GIT_NAME:
-    from_secret: GIT_NAME
+    from_secret : GIT_NAME
   BR_BRANCH:
-    from_secret: BR_BRANCH
+    from_secret : BR_BRANCH
   TOKEN:
-    from_secret: TELEGRAM_TOKEN
+    from_secret : TELEGRAM_TOKEN
   CHAT_ID:
-    from_secret: CHANNEL_ID
+    from_secret : CHANNEL_ID
   OWNER_ID:
-    from_secret: COWNER_ID
+    from_secret : COWNER_ID
   STATUS:
-    from_secret: STATUS
+    from_secret : STATUS
 
 steps:
 - name: envlunch
