@@ -2,30 +2,44 @@ kind: pipeline
 name: Batik Recovery
 
 environment:
-  GIT_NAME:
-    from_secret : GIT_NAME
-  BR_BRANCH:
-    from_secret : BR_BRANCH
-  TOKEN:
-    from_secret : TELEGRAM_TOKEN
-  CHAT_ID:
-    from_secret : CHANNEL_ID
-  OWNER_ID:
-    from_secret : COWNER_ID
-  STATUS:
-    from_secret : STATUS
+  VENDOR: xiaomi
+  DEVICE: pine
+
 
 steps:
 - name: envlunch
   image: fr3akyphantom/droid-builder:latest
   environment:
-    VENDOR: xiaomi
-    DEVICE: pine
+    GIT_NAME:
+      from_secret : GIT_NAME
+    BR_BRANCH:
+       from_secret : BR_BRANCH
+    TOKEN:
+      from_secret : TELEGRAM_TOKEN
+    CHAT_ID:
+      from_secret : CHANNEL_ID
+    OWNER_ID:
+      from_secret : COWNER_ID
+    STATUS:
+      from_secret : STATUS
   commands:
   - wget -q https://github.com/rzlamrr/scripts/raw/master/private/envlunch.sh
   - bash envlunch.sh
 - name: sync
   image: fr3akyphantom/droid-builder:latest
+  environment:
+    GIT_NAME:
+      from_secret : GIT_NAME
+    BR_BRANCH:
+       from_secret : BR_BRANCH
+    TOKEN:
+      from_secret : TELEGRAM_TOKEN
+    CHAT_ID:
+      from_secret : CHANNEL_ID
+    OWNER_ID:
+      from_secret : COWNER_ID
+    STATUS:
+      from_secret : STATUS
   environment:
     VENDOR: xiaomi
     DEVICE: pine
@@ -43,7 +57,7 @@ steps:
     format: markdown
     message: >
       {{#success build.status}}
-      #twrp #batik #pine #$STATUS
+      #twrp #batik #pine #unofficial
       **🆕 <b>Batik recovery</b> build is succeeded!**
 
       📱 Device: 
