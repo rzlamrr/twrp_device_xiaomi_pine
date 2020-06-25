@@ -50,12 +50,12 @@ steps:
   - bash make.sh
 - name: telegram
   image: appleboy/drone-telegram
-  secrets:
-    - source: CHAT_ID
-      target: drone-telegram_token
-    - source: TELEGRAM_TOKEN
-      target: drone-telegram_to
   settings:
+    # The secrets below can be entered from the Drone UI for this repo
+    token:
+      from_secret: TELEGRAM_TOKEN
+    to:
+      from_secret: CHANNEL_ID
     format: markdown
     message: >
       {{#success build.status}}
@@ -71,12 +71,12 @@ steps:
       - $(find $(pwd)/out/target/product/${DEVICE}/*pine*.zip 2>/dev/null)
 - name: fail
   image: appleboy/drone-telegram
-  secrets:
-    - source: CHAT_ID
-      target: drone-telegram_token
-    - source: TELEGRAM_TOKEN
-      target: drone-telegram_to
   settings:
+    # The secrets below can be entered from the Drone UI for this repo
+    token:
+      from_secret: TELEGRAM_TOKEN
+    to:
+      from_secret: CHANNEL_ID
     format: markdown
     message: >
       {{#failure build.status}}
